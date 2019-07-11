@@ -1,0 +1,18 @@
+version: '3.1'
+
+services: 
+  presonal_reverse_proxy:
+    container_name: ${COMPOSE_RP_CONTAINER_NAME:-reverse-proxy}
+    image: nginx
+    volumes:
+    - ./mysites.conf:/etc/nginx/conf.d/mysites.conf
+    ports:
+    - "80:80"
+    restart: always
+    network_mode: 
+      "host"
+    environment:
+    # - NGINX_HOST=foobar.com
+    - NGINX_PORT=80
+    # command: /bin/bash -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+    command: nginx -g 'daemon off;'

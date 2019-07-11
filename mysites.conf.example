@@ -1,0 +1,7 @@
+server {
+    server_name local.example.org;
+
+    location / {
+      proxy_pass http://local.example.org:8012;
+    }
+}
